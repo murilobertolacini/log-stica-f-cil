@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Toaster } from "@/components/ui/sonner";
+import { LogisticaProvider } from "@/lib/logistica/store";
 
 function NotFoundComponent() {
   return (
@@ -77,11 +79,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "LogControl — Gestão de serviços de logística" },
+      {
+        name: "description",
+        content:
+          "Sistema de gestão de serviços de logística: cadastro rápido, status, alertas e relatórios.",
+      },
+      { property: "og:title", content: "LogControl — Gestão de serviços de logística" },
+      {
+        property: "og:description",
+        content: "Cadastre, acompanhe e finalize serviços de logística com poucos cliques.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -119,8 +127,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <LogisticaProvider>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+        <Toaster richColors position="top-right" />
+      </LogisticaProvider>
     </QueryClientProvider>
   );
 }
