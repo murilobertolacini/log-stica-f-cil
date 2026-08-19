@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as ServicosIndexRouteImport } from './routes/servicos.index'
 import { Route as ServicosNovoRouteImport } from './routes/servicos.novo'
 import { Route as ServicosIdIndexRouteImport } from './routes/servicos.$id.index'
@@ -18,6 +19,11 @@ import { Route as ServicosIdEditarRouteImport } from './routes/servicos.$id.edit
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientesRoute = ClientesRouteImport.update({
+  id: '/clientes',
+  path: '/clientes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicosIndexRoute = ServicosIndexRouteImport.update({
@@ -43,6 +49,7 @@ const ServicosIdEditarRoute = ServicosIdEditarRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
   '/servicos/novo': typeof ServicosNovoRoute
   '/servicos/': typeof ServicosIndexRoute
   '/servicos/$id/editar': typeof ServicosIdEditarRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
   '/servicos/novo': typeof ServicosNovoRoute
   '/servicos': typeof ServicosIndexRoute
   '/servicos/$id/editar': typeof ServicosIdEditarRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
   '/servicos/novo': typeof ServicosNovoRoute
   '/servicos/': typeof ServicosIndexRoute
   '/servicos/$id/editar': typeof ServicosIdEditarRoute
@@ -67,6 +76,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/clientes'
     | '/servicos/novo'
     | '/servicos/'
     | '/servicos/$id/editar'
@@ -74,6 +84,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/clientes'
     | '/servicos/novo'
     | '/servicos'
     | '/servicos/$id/editar'
@@ -81,6 +92,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/clientes'
     | '/servicos/novo'
     | '/servicos/'
     | '/servicos/$id/editar'
@@ -89,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ClientesRoute: typeof ClientesRoute
   ServicosNovoRoute: typeof ServicosNovoRoute
   ServicosIndexRoute: typeof ServicosIndexRoute
   ServicosIdEditarRoute: typeof ServicosIdEditarRoute
@@ -102,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clientes': {
+      id: '/clientes'
+      path: '/clientes'
+      fullPath: '/clientes'
+      preLoaderRoute: typeof ClientesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/servicos/': {
@@ -137,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ClientesRoute: ClientesRoute,
   ServicosNovoRoute: ServicosNovoRoute,
   ServicosIndexRoute: ServicosIndexRoute,
   ServicosIdEditarRoute: ServicosIdEditarRoute,
