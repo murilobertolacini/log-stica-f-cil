@@ -69,9 +69,9 @@ function Campo({
   full,
 }: {
   label: string;
-  erro?: string;
+  erro?: string | undefined;
   children: React.ReactNode;
-  full?: boolean;
+  full?: boolean | undefined;
 }) {
   return (
     <div className={full ? "sm:col-span-2 lg:col-span-3" : undefined}>
