@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ClientesRouteImport } from './routes/clientes'
+import { Route as MotoristasRouteImport } from './routes/motoristas'
+import { Route as RelatoriosRouteImport } from './routes/relatorios'
+import { Route as VeiculosRouteImport } from './routes/veiculos'
+import { Route as ServicosIndexRouteImport } from './routes/servicos.index'
+import { Route as ServicosNovoRouteImport } from './routes/servicos.novo'
+import { Route as ServicosIdIndexRouteImport } from './routes/servicos.$id.index'
+import { Route as ServicosIdEditarRouteImport } from './routes/servicos.$id.editar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientesRoute = ClientesRouteImport.update({
+  id: '/clientes',
+  path: '/clientes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MotoristasRoute = MotoristasRouteImport.update({
+  id: '/motoristas',
+  path: '/motoristas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelatoriosRoute = RelatoriosRouteImport.update({
+  id: '/relatorios',
+  path: '/relatorios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VeiculosRoute = VeiculosRouteImport.update({
+  id: '/veiculos',
+  path: '/veiculos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicosIndexRoute = ServicosIndexRouteImport.update({
+  id: '/servicos/',
+  path: '/servicos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicosNovoRoute = ServicosNovoRouteImport.update({
+  id: '/servicos/novo',
+  path: '/servicos/novo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicosIdIndexRoute = ServicosIdIndexRouteImport.update({
+  id: '/servicos/$id/',
+  path: '/servicos/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicosIdEditarRoute = ServicosIdEditarRouteImport.update({
+  id: '/servicos/$id/editar',
+  path: '/servicos/$id/editar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
+  '/motoristas': typeof MotoristasRoute
+  '/relatorios': typeof RelatoriosRoute
+  '/veiculos': typeof VeiculosRoute
+  '/servicos/novo': typeof ServicosNovoRoute
+  '/servicos/': typeof ServicosIndexRoute
+  '/servicos/$id/editar': typeof ServicosIdEditarRoute
+  '/servicos/$id/': typeof ServicosIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
+  '/motoristas': typeof MotoristasRoute
+  '/relatorios': typeof RelatoriosRoute
+  '/veiculos': typeof VeiculosRoute
+  '/servicos/novo': typeof ServicosNovoRoute
+  '/servicos': typeof ServicosIndexRoute
+  '/servicos/$id/editar': typeof ServicosIdEditarRoute
+  '/servicos/$id': typeof ServicosIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
+  '/motoristas': typeof MotoristasRoute
+  '/relatorios': typeof RelatoriosRoute
+  '/veiculos': typeof VeiculosRoute
+  '/servicos/novo': typeof ServicosNovoRoute
+  '/servicos/': typeof ServicosIndexRoute
+  '/servicos/$id/editar': typeof ServicosIdEditarRoute
+  '/servicos/$id/': typeof ServicosIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/clientes'
+    | '/motoristas'
+    | '/relatorios'
+    | '/veiculos'
+    | '/servicos/novo'
+    | '/servicos/'
+    | '/servicos/$id/editar'
+    | '/servicos/$id/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/clientes'
+    | '/motoristas'
+    | '/relatorios'
+    | '/veiculos'
+    | '/servicos/novo'
+    | '/servicos'
+    | '/servicos/$id/editar'
+    | '/servicos/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/clientes'
+    | '/motoristas'
+    | '/relatorios'
+    | '/veiculos'
+    | '/servicos/novo'
+    | '/servicos/'
+    | '/servicos/$id/editar'
+    | '/servicos/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ClientesRoute: typeof ClientesRoute
+  MotoristasRoute: typeof MotoristasRoute
+  RelatoriosRoute: typeof RelatoriosRoute
+  VeiculosRoute: typeof VeiculosRoute
+  ServicosNovoRoute: typeof ServicosNovoRoute
+  ServicosIndexRoute: typeof ServicosIndexRoute
+  ServicosIdEditarRoute: typeof ServicosIdEditarRoute
+  ServicosIdIndexRoute: typeof ServicosIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/clientes': {
+      id: '/clientes'
+      path: '/clientes'
+      fullPath: '/clientes'
+      preLoaderRoute: typeof ClientesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/motoristas': {
+      id: '/motoristas'
+      path: '/motoristas'
+      fullPath: '/motoristas'
+      preLoaderRoute: typeof MotoristasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relatorios': {
+      id: '/relatorios'
+      path: '/relatorios'
+      fullPath: '/relatorios'
+      preLoaderRoute: typeof RelatoriosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/veiculos': {
+      id: '/veiculos'
+      path: '/veiculos'
+      fullPath: '/veiculos'
+      preLoaderRoute: typeof VeiculosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicos/': {
+      id: '/servicos/'
+      path: '/servicos'
+      fullPath: '/servicos/'
+      preLoaderRoute: typeof ServicosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicos/novo': {
+      id: '/servicos/novo'
+      path: '/servicos/novo'
+      fullPath: '/servicos/novo'
+      preLoaderRoute: typeof ServicosNovoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicos/$id/': {
+      id: '/servicos/$id/'
+      path: '/servicos/$id'
+      fullPath: '/servicos/$id/'
+      preLoaderRoute: typeof ServicosIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicos/$id/editar': {
+      id: '/servicos/$id/editar'
+      path: '/servicos/$id/editar'
+      fullPath: '/servicos/$id/editar'
+      preLoaderRoute: typeof ServicosIdEditarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ClientesRoute: ClientesRoute,
+  MotoristasRoute: MotoristasRoute,
+  RelatoriosRoute: RelatoriosRoute,
+  VeiculosRoute: VeiculosRoute,
+  ServicosNovoRoute: ServicosNovoRoute,
+  ServicosIndexRoute: ServicosIndexRoute,
+  ServicosIdEditarRoute: ServicosIdEditarRoute,
+  ServicosIdIndexRoute: ServicosIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
